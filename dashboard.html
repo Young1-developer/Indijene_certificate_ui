@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="icon" href="./assets/images/logo.jpg" type="image/jpg" class="top-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Dashboard for Indijene</title>
+    <style>
+            body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+.container {
+  animation: fadeIn 1.5s ease-in-out;
+  padding: 1em; /* Added padding for better spacing on smaller screens */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-certificate {
+  width: 100%;
+  position: relative; /* Ensure absolute positioning works within this container */
+}
+
+.dashboard-certificate img {
+  width: 20vw; /* Use relative units for responsive sizing */
+  max-width: 100px; /* Limit the maximum size */
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0;
+  animation: fadeInMove 10s ease infinite alternate-reverse;
+}
+
+.dashboard-certificate img:nth-of-type(2) {
+  animation-delay: 4s;
+}
+
+.dashboard-certificate img:nth-of-type(3) {
+  animation-delay: 8s;
+}
+
+.dashboard-certificate img:nth-of-type(4) {
+  animation-delay: 12s;
+}
+
+@keyframes fadeInMove {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(0) translateX(30vw);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(0) translateX(60vw);
+    opacity: 0.75;
+  }
+  75% {
+    transform: translateY(0) translateX(90vw);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) translateX(100vw);
+    opacity: 0.25;
+  }
+}
+
+/* Media Queries for better responsiveness */
+
+@media (max-width: 768px) {
+  .dashboard-certificate img {
+    width: 30vw; /* Increase size on smaller screens */
+  }
+
+  @keyframes fadeInMove {
+    0% {
+      transform: translateY(-10vh) translateX(0);
+      opacity: 0;
+    }
+    25% {
+      transform: translateY(0) translateX(20vw);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(0) translateX(40vw);
+      opacity: 0.75;
+    }
+    75% {
+      transform: translateY(0) translateX(60vw);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(0) translateX(80vw);
+      opacity: 0.25;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-certificate img {
+    width: 40vw; /* Increase size on smaller screens */
+  }
+
+  @keyframes fadeInMove {
+    0% {
+      transform: translateY(-10vh) translateX(0);
+      opacity: 0;
+    }
+    25% {
+      transform: translateY(0) translateX(15vw);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(0) translateX(30vw);
+      opacity: 0.75;
+    }
+    75% {
+      transform: translateY(0) translateX(45vw);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(0) translateX(60vw);
+      opacity: 0.25;
+    }
+  }
+}
+
+
+
+.info-card {
+      margin-top: 20px;
+    }
+
+    .info-card .card-header {
+      background-color: #343a40;
+      color: #fff;
+    }
+
+    .info-card .card-body {
+      padding: 20px;
+    }
+
+    .info-card .row {
+      margin-bottom: 10px;
+    }
+
+    .info-card .row .col {
+      padding: 5px 10px;
+    }
+
+    @media (max-width: 768px) {
+      .info-card .row .col {
+        padding: 10px 0;
+      }
+    }
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg mt-0 navbar-light bg-light "  >
+        <div class="container-fluid px-5">
+          <a class="navbar-brand" href="index.html">
+            <img src="./assets/images/logo.jpg" alt="" width="80" height="80" class="rounded-circle">
+            Gusau Indijene Processing
+          </a>
+          
+          </div>
+        </div>
+      </nav> 
+
+      <!-- start of side navbar -->
+      <div class="navbar navbar-expand-lg navbar-light bg-light w-100">
+        <div class="container-fluid">
+          <a class="navbar-brand me-2 px-3 rounded-circle border border-3 border-dark" href="#">
+            <i class="bi bi-person-fill "></i>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#!" onclick="setActive(this), showSection('dashboard')">
+                <span class="me-2">
+                  <i class="bi bi-house-fill"></i>
+                </span>
+                Dashboard</a>
+              </li>
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="#!" onclick="setActive(this), showSection('certificate')">
+                <span class="me-2">
+                  <i class="bi bi-pen-fill"></i>
+                </span>
+                Generate Indijene</a>
+              </li>
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="setActive(this), displayUserInfo()">
+                <span class="me-2">
+                  <i class="bi bi-folder-fill"></i>
+                </span>
+                Infor</a>
+              </li>
+
+              <li class="nav-item">   
+            <a class="nav-link  " href="#"> 
+             <span class="me-2">
+              Status:
+              <button class="btn btn-success btn-sm">accepted</button>
+             </span>
+           
+                </a>
+                </li>
+            </ul>
+
+            
+          </div>
+        </div>
+
+      </div>
+      <!-- end of side navbar -->
+
+
+      <!-- dashboard hero section start -->
+
+<section id="main-dashboard-hero">
+  <div class="container">
+    <div id="dashboard">
+     <div class="card-body text-center p-4">
+       <h2>You did not generate anything yet</h2>
+     </div>
+    </div>
+<!-- end of dashboard -->
+
+<div id="certificate" style="display: none; z-index: 2;">
+  <div class="card-body ">
+    <form id="loginForm" style="width: 60%;  margin: auto;">
+      <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" required>
+      </div>
+      <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" required>
+      </div>
+      <div class="mb-3">
+          <label for="localGov" class="form-label">L.G.A</label>
+          <input type="text" class="form-control" id="localGov" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="village" class="form-label">Village</label>
+        <input type="text" class="form-control" id="village" required>
+    </div>
+      <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="comFrimpassword" class="form-label">Comfirm Password</label>
+      <input type="password" class="form-control" id="comFrimpassword" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="avatar" class="form-label">Picture</label>
+    <input type="file" class="form-control" id="avatar" required>
+</div>
+      
+      <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select class="form-select" id="gender" required>
+              <option value="">Select sex</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+
+          </select>
+      </div>
+      <button type="submit" class="btn btn-dark w-100">Generate</button>
+  </form>
+  </div>
+</div>
+
+
+
+<div id="info" class="info-card card" style="display: none;">
+  <div class="card-header">
+    <h5>User Information</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-4 text-right"><strong>First Name:</strong></div>
+      <div class="col-8" id="info-firstName"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-right"><strong>Last Name:</strong></div>
+      <div class="col-8" id="info-lastName"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-right"><strong>L.G.A:</strong></div>
+      <div class="col-8" id="info-localGov"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-right"><strong>Village:</strong></div>
+      <div class="col-8" id="info-village"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-right"><strong>Email:</strong></div>
+      <div class="col-8" id="info-email"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-right"><strong>Gender:</strong></div>
+      <div class="col-8" id="info-gender"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-right"><strong>Avatar:</strong></div>
+      <div class="col-8">
+        <img id="info-avatar" src="" alt="User Avatar" style="width: 100px; height: 100px; border-radius: 50%;">
+      </div>
+    </div>
+</div>
+
+
+  </div>
+</section>
+
+      <!-- dashboard hero section end -->
+
+
+      
+<div class="dashboard-certificate">
+  <img src="assets/images/fish.jpg" class="display-1" alt="">
+  <img src="assets/images/fish.jpg" class="display-1" alt="">
+  <img src="assets/images/fish.jpg" class="display-1" alt="">
+  <img src="assets/images/fish.jpg" class="display-1" alt="">
+ 
+</div>
+
+      
+
+
+
+
+<div class="sub-footer dash">
+    <div class="container">
+        <div class="footer-infor">
+            <a href="#">Contact</a>|
+            <a href="#">infor</a>|
+            <a href="#">Privacy policy</a>|
+            <a href="#">Terms</a>|
+        </div>
+        <div class="social-media-icon">
+            <a href="" class="m-4 text-reset">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+           
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-whatsapp"></i>
+              
+            </a>
+            
+          </div>
+    
+    </div>
+    
+</div>
+<footer>
+    <p>@2024 copy&copy;right Indijene Processing System Gusau local Gov</p>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="js/script.js"></script>
+</body>
+</html>
