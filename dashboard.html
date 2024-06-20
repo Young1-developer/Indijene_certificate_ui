@@ -10,14 +10,48 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Dashboard for Indijene</title>
     <style>
-            body, html {
+   
+body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  overflow-x: hidden;
+  background: linear-gradient(45deg, #333, #222);
   font-family: 'Roboto', sans-serif;
   color: white;
-  overflow-x: hidden;
+}
+
+#sidebar {
+  width: 250px;
+  min-height: 800px;
+  transition: width 0.3s;
+}
+
+#sidebar .navbar-nav {
+  flex-direction: column;
+  width: 100%;
+ 
+}
+
+#main-content {
+  transition: margin-left 0.3s;
+}
+
+@media (max-width: 992px) {
+  #sidebar {
+   width: 0px;
+  }
+  #navbarNav{
+    background-color: #fff;
+    color: #222;
+    padding: 15px;
+    width: 200px;
+    transition: width 1s;
+   
+  }
+  #main-content {
+    margin-left: 0;
+  }
+
 }
 
 .container {
@@ -118,31 +152,11 @@
 
 @media (max-width: 480px) {
   .dashboard-certificate img {
-    width: 40vw; /* Increase size on smaller screens */
+    width: 40vw; 
+    display: none;
+    /* Increase size on smaller screens */
   }
 
-  @keyframes fadeInMove {
-    0% {
-      transform: translateY(-10vh) translateX(0);
-      opacity: 0;
-    }
-    25% {
-      transform: translateY(0) translateX(15vw);
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(0) translateX(30vw);
-      opacity: 0.75;
-    }
-    75% {
-      transform: translateY(0) translateX(45vw);
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateY(0) translateX(60vw);
-      opacity: 0.25;
-    }
-  }
 }
 
 
@@ -184,68 +198,70 @@
             <img src="./assets/images/logo.jpg" alt="" width="80" height="80" class="rounded-circle">
             Gusau Indijene Processing
           </a>
-          
+          <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           </div>
         </div>
       </nav> 
 
+      
       <!-- start of side navbar -->
-      <div class="navbar navbar-expand-lg navbar-light bg-light w-100">
-        <div class="container-fluid">
-          <a class="navbar-brand me-2 px-3 rounded-circle border border-3 border-dark" href="#">
-            <i class="bi bi-person-fill "></i>
+<div class="d-flex">
+  <div class="navbar navbar-expand-lg navbar-light bg-light flex-column vh-100 " id="sidebar" >
+   
+      
+      <div class="collapse navbar-collapse " id="navbarNav">
+      
+        <div class="container-fluid flex-column p-0">
+          <a class="navbar-brand me-2 px-3 rounded-circle border border-3 border-dark mb-3" href="#">
+            <i class="bi bi-person-fill"></i>
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#!" onclick="setActive(this), showSection('dashboard')">
-                <span class="me-2">
-                  <i class="bi bi-house-fill"></i>
-                </span>
-                Dashboard</a>
-              </li>
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="#!" onclick="setActive(this), showSection('certificate')">
-                <span class="me-2">
-                  <i class="bi bi-pen-fill"></i>
-                </span>
-                Generate Indijene</a>
-              </li>
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="setActive(this), displayUserInfo()">
-                <span class="me-2">
-                  <i class="bi bi-folder-fill"></i>
-                </span>
-                Infor</a>
-              </li>
-
-              <li class="nav-item">   
-            <a class="nav-link  " href="#"> 
-             <span class="me-2">
-              Status:
-              <button class="btn btn-success btn-sm">accepted</button>
-             </span>
-           
-                </a>
-                </li>
-            </ul>
-
-            
-          </div>
-        </div>
-
+        <ul class="navbar-nav w-100 me-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#!" onclick="setActive(this), showSection('dashboard')">
+              <span class="me-2">
+                <i class="bi bi-house-fill"></i>
+              </span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#!" onclick="setActive(this), showSection('certificate')">
+              <span class="me-2">
+                <i class="bi bi-pen-fill"></i>
+              </span>
+              Generate Indijene
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="setActive(this), displayUserInfo()">
+              <span class="me-2">
+                <i class="bi bi-folder-fill"></i>
+              </span>
+              Infor
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <span class="me-2">
+                Status:
+                <button class="btn btn-success btn-sm">accepted</button>
+              </span>
+            </a>
+          </li>
+        </ul>
       </div>
-      <!-- end of side navbar -->
+    </div>
+  </div>
 
 
-      <!-- dashboard hero section start -->
+
+  <div class="flex-grow-1 p-3" id="main-content">
+    <!-- Main content goes here -->
+
+
+          <!-- dashboard hero section start -->
 
 <section id="main-dashboard-hero">
   <div class="container">
@@ -361,6 +377,14 @@
 </section>
 
       <!-- dashboard hero section end -->
+  </div>
+</div>
+<!-- end of side navbar -->
+
+      <!-- end of side navbar -->
+
+
+
 
 
       

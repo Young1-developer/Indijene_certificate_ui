@@ -4,8 +4,7 @@
     --white:#fff;
     --active-btn-color:#004494;
     --button-shadow:0 4px 8px rgba(0, 91, 187, 0.2);
-    --offCanvas-width:270px;
-    --topNavbarHeight:400px;
+    
 }
 
 *{
@@ -44,13 +43,8 @@
 }
 .navbar{
     border-bottom: 4px solid var(--bg-color);
-    z-index: 10;
+    z-index: 1;
    
-}
-/* offcanvas */
-.offcanvas{
-    height: var(--topNavbarHeight);
-    width: var(--offCanvas-width);
 }
 
 /* main-herostyle */
@@ -105,7 +99,7 @@
 
 .certificate-images img{
     position: absolute;
-    width: 200px;
+    width: 100px;
     border-radius: 50%;
     top: 90%;
     left: -200px;
@@ -176,7 +170,7 @@
     color: var(--white);
     text-align: center;
     padding: 1em;
-    margin-top: 400px;
+    margin-top: 60px;
 }
 
 .sub-footer .container{

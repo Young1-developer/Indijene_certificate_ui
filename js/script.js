@@ -1,29 +1,62 @@
-document.addEventListener('DOMContentLoaded', function(){
-    const welcomeSection = document.getElementById('welcomeSection');
 
-    const Observer = new IntersectionObserver(function(section){
-        section.forEach(view =>{
+document.addEventListener('DOMContentLoaded',function(){
+    interSectionFunc('welcomeSection');
+}
+);
+
+function interSectionFunc(section){
+    const Section = document.getElementById(section);
+
+    const Observer = new IntersectionObserver(function(entries){
+        entries.forEach(view =>{
             if(view.isIntersecting){
-                welcomeSection.style.opacity = 1;
+                Section.style.opacity = 1;
             }else{
-                welcomeSection.style.opacity = 0;
+                Section.style.opacity = 0;
             }
         })
     },{
         root : null,
         rootMargin : '0px',
         threshold: 0.3
-    })
-    Observer.observe(welcomeSection);
-})
+    });
+    Observer.observe(Section);
+}
+// admin navbar
+ // Menu Toggle Script
+ document.getElementById("menu-toggle").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("sidebar-wrapper").classList.toggle("toggled");
+  });
+
+
 // end of about observer logic
 
-function showSection(section) {
-    ['dashboard','certificate','info'].forEach(sec => {
-        document.getElementById(sec).style.display = 'none';
+function applyActive(){
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('active');
+}
+function showSection(section){
+        // Array of all section IDs
+        const sections = ['dashboard','certificate','info','adminDashboard','users','settings','profile'];
+    
+    // Hide all sections
+    sections.forEach(sec => {
+        const element = document.getElementById(sec);
+        if (element) {
+            element.style.display = 'none';
+        } else {
+            console.error(`Element with id ${sec} not found.`);
+        }
     });
     
-    document.getElementById(section).style.display = 'block';
+    // Show the selected section
+    const selectedSection = document.getElementById(section);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+    } else {
+        console.error(`Element with id ${section} not found.`);
+    }
 }
 
 function setActive(element){
